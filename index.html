@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanjith B — Portfolio</title>
+<meta name="description" content="Sanjith B — AI Backend Developer and Mobile App Developer building AI document-processing systems and Android apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --surface-2: #f0f0ec;
+    --text: #16181d;
+    --muted: #5d636f;
+    --border: #e3e3de;
+    --accent: #0f766e;
+    --accent-soft: #ccfbf1;
+    --accent-text: #0f766e;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d0f12;
+      --surface: #15181d;
+      --surface-2: #1c2027;
+      --text: #e8eaed;
+      --muted: #9aa1ad;
+      --border: #262b33;
+      --accent: #2dd4bf;
+      --accent-soft: rgba(45,212,191,.12);
+      --accent-text: #5eead4;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d0f12;
+    --surface: #15181d;
+    --surface-2: #1c2027;
+    --text: #e8eaed;
+    --muted: #9aa1ad;
+    --border: #262b33;
+    --accent: #2dd4bf;
+    --accent-soft: rgba(45,212,191,.12);
+    --accent-text: #5eead4;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s, color .25s;
+  }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; letter-spacing: -.02em; font-size: 18px; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--muted); font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .theme-btn {
+    width: 36px; height: 36px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); cursor: pointer; display: grid; place-items: center;
+  }
+  .theme-btn svg { width: 18px; height: 18px; }
+
+  /* Hero */
+  .hero { padding: 96px 0 80px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent-text);
+    font-size: 13px; font-weight: 600; margin-bottom: 24px;
+  }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .hero h1 { font-size: clamp(40px, 7vw, 72px); line-height: 1.05; letter-spacing: -.035em; font-weight: 800; }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .role { font-size: clamp(18px, 2.4vw, 22px); color: var(--muted); margin-top: 16px; font-weight: 500; }
+  .hero p.lead { max-width: 640px; margin-top: 24px; color: var(--muted); font-size: 17px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 15px;
+    border: 1px solid var(--border); background: var(--surface); transition: transform .15s, border-color .2s;
+  }
+  .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn svg { width: 18px; height: 18px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 48px; color: var(--muted); font-size: 14px; }
+  .hero-meta div { display: flex; align-items: center; gap: 8px; }
+  .hero-meta svg { width: 16px; height: 16px; color: var(--accent); }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+  .stat .n { font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+  .stat .l { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 36px; }
+  .section-head .num { color: var(--accent); font-size: 14px; }
+  .section-head h2 { font-size: 30px; letter-spacing: -.025em; font-weight: 750; }
+  .section-head .line { flex: 1; height: 1px; background: var(--border); }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 18px; padding: 28px; box-shadow: var(--shadow);
+  }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; }
+  .about-grid p { color: var(--muted); }
+  .about-grid p + p { margin-top: 14px; }
+  .focus-list { list-style: none; display: grid; gap: 14px; }
+  .focus-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+  .focus-list .ic {
+    flex: none; width: 34px; height: 34px; border-radius: 10px;
+    background: var(--accent-soft); color: var(--accent-text); display: grid; place-items: center;
+  }
+  .focus-list .ic svg { width: 18px; height: 18px; }
+  .focus-list strong { display: block; font-size: 15px; }
+  .focus-list span { color: var(--muted); font-size: 13.5px; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+  .skill-card h3 { font-size: 15px; font-weight: 650; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .skill-card h3 svg { width: 18px; height: 18px; color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 13px; padding: 5px 11px; border-radius: 8px;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+  }
+
+  /* Experience */
+  .exp-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 6px; }
+  .exp-head h3 { font-size: 21px; letter-spacing: -.015em; }
+  .exp-company { color: var(--accent-text); font-weight: 600; }
+  .exp-date { font-size: 13px; color: var(--muted); padding: 4px 10px; border: 1px solid var(--border); border-radius: 8px; height: fit-content; }
+  .exp-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 24px; }
+  .exp-groups h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 12px; font-weight: 600; }
+  ul.bullets { list-style: none; display: grid; gap: 10px; }
+  ul.bullets li { position: relative; padding-left: 20px; font-size: 15px; color: var(--muted); }
+  ul.bullets li::before {
+    content: ""; position: absolute; left: 2px; top: 10px;
+    width: 7px; height: 7px; border-radius: 2px; background: var(--accent); opacity: .8;
+  }
+  ul.bullets li strong { color: var(--text); font-weight: 600; }
+  .doc-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--border); align-items: center; }
+  .doc-chips .lbl { font-size: 13px; color: var(--muted); margin-right: 4px; }
+
+  /* Project */
+  .project-top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .project-top h3 { font-size: 26px; letter-spacing: -.02em; }
+  .project-top .sub { color: var(--muted); margin-top: 4px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 28px 0; }
+  .feature {
+    padding: 18px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border);
+  }
+  .feature .ic { color: var(--accent); margin-bottom: 10px; }
+  .feature .ic svg { width: 22px; height: 22px; }
+  .feature h4 { font-size: 15px; margin-bottom: 6px; }
+  .feature p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+  /* Education */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .edu h3 { font-size: 18px; letter-spacing: -.01em; }
+  .edu .school { color: var(--accent-text); font-weight: 600; margin-top: 4px; font-size: 15px; }
+  .edu .meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 16px; font-size: 14px; color: var(--muted); }
+  .edu .score { font-weight: 700; color: var(--text); }
+
+  /* Contact */
+  .contact { text-align: center; padding: 64px 28px; }
+  .contact h2 { font-size: clamp(28px, 5vw, 44px); letter-spacing: -.03em; font-weight: 800; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 14px auto 32px; }
+  .contact .hero-actions { justify-content: center; margin-top: 0; }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 13px; text-align: center; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 820px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-links a { display: none; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding: 64px 0 56px; }
+    section { padding: 52px 0; }
+    .card { padding: 20px; }
+    .btn { flex: 1 1 auto; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">Sanjith<span>.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="badge"><span class="dot"></span>Product Developer @ Nigo Compliance</div>
+      <h1>Hi, I'm <span class="accent">Sanjith B</span>.<br>I build AI backends &amp; Android apps.</h1>
+      <div class="role">AI Backend Developer · Mobile App Developer</div>
+      <p class="lead">
+        I design AI-powered document-processing systems with Node.js, Claude and Gemini, and ship
+        Android apps with React Native, Expo and native Kotlin modules. I care most about apps that
+        stay reliable in production and solve real business and productivity problems.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="mailto:sanjith151102@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          Get in touch
+        </a>
+        <a class="btn" href="https://github.com/SanjithB" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://linkedin.com/in/sanjith-b-a05b95230" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="hero-meta">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Erode, India</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>Open to opportunities</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>Tamil · English</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><div class="n">2+ yrs</div><div class="l">Building products</div></div>
+        <div class="stat"><div class="n">2</div><div class="l">LLM platforms integrated</div></div>
+        <div class="stat"><div class="n">15+</div><div class="l">Banks parsed on-device</div></div>
+        <div class="stat"><div class="n">3</div><div class="l">Compliance filings automated</div></div>
+      </div>
+
+      <div class="section-head reveal"><span class="num mono">01</span><h2>About</h2><span class="line"></span></div>
+      <div class="about-grid">
+        <div class="card reveal">
+          <p>
+            I'm a software developer who works on two things: <strong style="color:var(--text)">AI backend development</strong>
+            and <strong style="color:var(--text)">Android mobile development</strong>. At Nigo Compliance I build
+            AI pipelines that read financial statements and corporate documents and turn them into structured,
+            filing-ready data.
+          </p>
+          <p>
+            On the mobile side I build with React Native, Expo and TypeScript. When the JavaScript layer
+            isn't enough, I write native Kotlin modules, along with background tasks, geofencing, Firebase sync and
+            automated CI/CD release pipelines.
+          </p>
+          <p>
+            I started out in mechanical engineering, then moved into computer science, and I still approach
+            problems with an engineer's focus on reliability and practical outcomes.
+          </p>
+        </div>
+        <div class="card reveal">
+          <ul class="focus-list">
+            <li>
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3v1a3 3 0 0 1-1 2.24V15a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-1.76A3 3 0 0 1 5 11v-1a3 3 0 0 1 3-3V6a4 4 0 0 1 4-4Z"/><path d="M12 8v8M9 12h6"/></svg></div>
+              <div><strong>AI Document Processing</strong><span>Claude &amp; Gemini for structured extraction</span></div>
+            </li>
+            <li>
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20h10M12 16v4"/></svg></div>
+              <div><strong>Backend &amp; APIs</strong><span>Node.js, Express, REST, PostgreSQL</span></div>
+            </li>
+            <li>
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+              <div><strong>Android Apps</strong><span>React Native, Expo, Kotlin modules</span></div>
+            </li>
+            <li>
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></div>
+              <div><strong>CI/CD Automation</strong><span>GitHub Actions, signed APK releases</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal"><span class="num mono">02</span><h2>Skills</h2><span class="line"></span></div>
+      <div class="skills-grid">
+        <div class="card skill-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>Languages</h3>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Kotlin</span></div>
+        </div>
+        <div class="card skill-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="1.5"/><rect x="2" y="14" width="20" height="7" rx="1.5"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>Backend</h3>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span><span class="tag">API Integration</span></div>
+        </div>
+        <div class="card skill-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2Z"/><path d="M19 17v4M17 19h4"/></svg>AI &amp; LLMs</h3>
+          <div class="tags"><span class="tag">Anthropic Claude API</span><span class="tag">Google Gemini API</span><span class="tag">Prompt Engineering</span><span class="tag">AI Document Processing</span><span class="tag">Structured Data Extraction</span><span class="tag">AI Document Generation</span></div>
+        </div>
+        <div class="card skill-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>Mobile</h3>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">Android</span><span class="tag">Expo Modules API</span><span class="tag">Native Modules</span><span class="tag">Background Tasks</span><span class="tag">Geofencing</span></div>
+        </div>
+        <div class="card skill-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>Database &amp; Cloud</h3>
+          <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">Firebase Auth</span><span class="tag">Cloud Firestore</span><span class="tag">AsyncStorage</span></div>
+        </div>
+        <div class="card skill-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3ZM9 3v15M15 6v15"/></svg>Maps &amp; Location</h3>
+          <div class="tags"><span class="tag">MapLibre</span><span class="tag">OpenStreetMap</span><span class="tag">Geolocation</span><span class="tag">Reverse Geocoding</span><span class="tag">Location Reminders</span></div>
+        </div>
+        <div class="card skill-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="9" r="3"/><path d="M6 9v6M18 12a6 6 0 0 1-6 6H9"/></svg>Tools &amp; DevOps</h3>
+          <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">GitHub Actions</span><span class="tag">Postman</span><span class="tag">CI/CD</span><span class="tag">APK Signing</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal"><span class="num mono">03</span><h2>Experience</h2><span class="line"></span></div>
+      <div class="card reveal">
+        <div class="exp-head">
+          <div>
+            <h3>Product Developer</h3>
+            <div class="exp-company">Nigo Compliance Private Limited · Erode, India</div>
+          </div>
+          <span class="exp-date mono">05/2024 — Present</span>
+        </div>
+
+        <div class="exp-groups">
+          <div>
+            <h4>AI Backend</h4>
+            <ul class="bullets">
+              <li>Built an <strong>AI document-processing backend</strong> in Node.js and Express.js that uses <strong>Anthropic Claude</strong> and <strong>Google Gemini</strong> to extract structured data from financial statements and corporate documents.</li>
+              <li>Built extraction workflows for financial figures and for director and shareholder details, used to prepare statutory compliance documents.</li>
+              <li>Wrote and refined prompts to extract negative values, equity share details, director information and company filing data more accurately.</li>
+              <li>Built <strong>AI-assisted Word document generation and editing</strong> so users can change Board Reports and Lists of Directors by typing plain-language instructions.</li>
+              <li>Built and integrated backend APIs for AI processing, document handling and application workflows.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Mobile &amp; DevOps</h4>
+            <ul class="bullets">
+              <li>Worked on the company's <strong>Android app</strong> in React Native and Expo: authentication, call-log sync, enquiry capture and native module integration.</li>
+              <li>Set up <strong>GitHub Actions</strong> workflows that build signed Android releases, keep build secrets secure and publish APKs to GitHub Releases.</li>
+              <li>Worked with the development team to document APIs in Postman, fix production issues and ship ongoing product improvements.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doc-chips">
+          <span class="lbl">Filings automated:</span>
+          <span class="tag mono">MGT-7</span><span class="tag mono">AOC-4</span><span class="tag mono">Director's Report</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal"><span class="num mono">04</span><h2>Projects</h2><span class="line"></span></div>
+      <div class="card reveal">
+        <div class="project-top">
+          <div>
+            <h3>GeoTask</h3>
+            <div class="sub">Android app for location-based reminders, expense tracking, notes and tasks</div>
+          </div>
+          <a class="btn" href="https://github.com/SanjithB" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            View on GitHub
+          </a>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <h4>Geofence reminders</h4>
+            <p>Background location checks with 200 m, 500 m or 1 km ranges, plus safeguards against duplicate alerts and inaccurate GPS readings.</p>
+          </div>
+          <div class="feature">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+            <h4>Native Kotlin module</h4>
+            <p>Custom Expo Modules API module that shows arrival cards over other apps and runs reminders in the background.</p>
+          </div>
+          <div class="feature">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="M8 9h8M8 13h5"/></svg></div>
+            <h4>Bank SMS parser</h4>
+            <p>On-device parser for 15+ Indian banks that pulls out amount, debit/credit, merchant, date and category, and uses message hashes to skip duplicates.</p>
+          </div>
+          <div class="feature">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+            <h4>Expense dashboard</h4>
+            <p>Seven spending categories, monthly totals, daily averages, month-over-month comparison, income and remaining balance, and a spending calendar.</p>
+          </div>
+          <div class="feature">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3ZM9 3v15M15 6v15"/></svg></div>
+            <h4>Maps &amp; search</h4>
+            <p>MapLibre with OpenStreetMap-based services, location search, reverse geocoding and parsing of shared Google Maps links.</p>
+          </div>
+          <div class="feature">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.78A6 6 0 1 0 6 16.5"/><path d="m9 15 3-3 3 3M12 12v9"/></svg></div>
+            <h4>Offline-first sync</h4>
+            <p>Google Sign-In and Firebase Auth, with data kept locally in AsyncStorage and synced to Cloud Firestore.</p>
+          </div>
+          <div class="feature">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></div>
+            <h4>Release automation</h4>
+            <p>GitHub Actions builds the signed APK, bumps the version code, verifies the signature, publishes to GitHub Releases and sends a Telegram notification.</p>
+          </div>
+        </div>
+
+        <div class="tags">
+          <span class="tag mono">React Native</span><span class="tag mono">Expo</span><span class="tag mono">TypeScript</span><span class="tag mono">Kotlin</span><span class="tag mono">Firebase</span><span class="tag mono">Cloud Firestore</span><span class="tag mono">MapLibre</span><span class="tag mono">GitHub Actions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head reveal"><span class="num mono">05</span><h2>Education</h2><span class="line"></span></div>
+      <div class="edu-grid">
+        <div class="card edu reveal">
+          <h3>B.E. Computer Science and Engineering</h3>
+          <div class="school">K. S. Rangasamy College of Technology</div>
+          <div class="meta"><span>Tiruchengode · 2021 – 2024</span><span>CGPA <span class="score">7.8</span></span></div>
+        </div>
+        <div class="card edu reveal">
+          <h3>Diploma in Mechanical Engineering</h3>
+          <div class="school">Kongu Polytechnic College</div>
+          <div class="meta"><span>Perundurai · 2018 – 2021</span><span><span class="score">88%</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="card contact reveal">
+        <h2>Let's build something.</h2>
+        <p>I'm open to roles and collaborations in AI backend development and mobile apps. The fastest way to reach me is email.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="mailto:sanjith151102@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            sanjith151102@gmail.com
+          </a>
+          <a class="btn" href="https://linkedin.com/in/sanjith-b-a05b95230" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/SanjithB" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Sanjith B · Erode, India</div>
+</footer>
+
+<script>
+  // Theme toggle
+  (function () {
+    var root = document.documentElement;
+    var icon = document.getElementById('themeIcon');
+    var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+    var moon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>';
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    if (saved) root.setAttribute('data-theme', saved);
+
+    function isDark() {
+      var t = root.getAttribute('data-theme');
+      if (t) return t === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    function render() { icon.innerHTML = isDark() ? sun : moon; }
+    render();
+
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      render();
+    });
+  })();
+
+  // Scroll reveal
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
