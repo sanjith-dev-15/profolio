@@ -424,6 +424,9 @@ section { padding: 120px 0; }
 }
 @media (max-width: 820px) {
   .nav-links { display: none; }
+  .nav { top: auto; bottom: calc(16px + env(safe-area-inset-bottom)); }
+  body { padding-bottom: 88px; }
+  .hero { padding-top: 56px; }
   .bento { grid-template-columns: 1fr 1fr; }
   .bento-item.b-mobile { grid-row: auto; }
   .edu-grid { grid-template-columns: 1fr; }
