@@ -18,7 +18,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 96px; color-scheme: dark; }
+html { scroll-behavior: smooth; color-scheme: dark; }
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
   background: var(--bg);
@@ -429,7 +429,7 @@ section { padding: 120px 0; }
   .edu-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .container { padding: 0 16px; }
+  .container { padding-left: 16px; padding-right: 16px; }
   section { padding: 84px 0; }
   .bento { grid-template-columns: 1fr; }
   .bento-item.b-ai { grid-column: auto; }
