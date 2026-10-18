@@ -102,6 +102,14 @@ export const experience = {
   ],
 };
 
+const techCount = skillGroups.reduce((sum, g) => sum + g.items.length, 0);
+
+export const heroStats = [
+  { n: 2, suffix: "+", label: "Years exp." },
+  { n: Math.floor(techCount / 5) * 5, suffix: "+", label: "Technologies" },
+  { n: experience.filings.length, suffix: "", label: "Filings automated" },
+];
+
 export const education = [
   {
     degree: "B.E. Computer Science and Engineering",
@@ -113,12 +121,21 @@ export const education = [
     pct: 78,
   },
   {
-    degree: "Diploma in Mechanical Engineering",
-    school: "Kongu Polytechnic College",
-    place: "Perundurai, India",
-    period: "2018 — 2021",
-    scoreLabel: "Score",
-    score: "88%",
-    pct: 88,
+    degree: "Higher Secondary (HSC)",
+    school: "Carmel Matric Higher Secondary School",
+    place: "Erode, India",
+    period: "2020",
+    scoreLabel: "Percentage",
+    score: "57.5%",
+    pct: 57.5,
+  },
+  {
+    degree: "Secondary School (SSLC)",
+    school: "Carmel Matric Higher Secondary School",
+    place: "Erode, India",
+    period: "2018",
+    scoreLabel: "Percentage",
+    score: "77.5%",
+    pct: 77.5,
   },
 ];

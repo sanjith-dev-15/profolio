@@ -1,4 +1,5 @@
-import { stats } from "@/lib/data";
+import Image from "next/image";
+import { profile, stats } from "@/lib/data";
 import { CountUp, GlowCard, Reveal, SectionHead } from "./ui";
 
 export default function About() {
@@ -25,17 +26,28 @@ export default function About() {
               software that keeps working in production.
             </p>
           </Reveal>
-          <div className="stats">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.08}>
-                <GlowCard className="stat">
-                  <div className="stat-n display">
-                    <CountUp to={s.n} suffix={s.suffix} />
-                  </div>
-                  <div className="stat-l">{s.label}</div>
-                </GlowCard>
-              </Reveal>
-            ))}
+          <div className="about-side">
+            <Reveal>
+              <GlowCard className="about-me">
+                <Image src="/sanjith.png" alt={profile.name} width={250} height={250} className="about-photo" />
+                <div>
+                  <div className="about-name display">{profile.name}</div>
+                  <div className="about-role">{profile.role}</div>
+                </div>
+              </GlowCard>
+            </Reveal>
+            <div className="stats">
+              {stats.map((s, i) => (
+                <Reveal key={s.label} delay={i * 0.08}>
+                  <GlowCard className="stat">
+                    <div className="stat-n display">
+                      <CountUp to={s.n} suffix={s.suffix} />
+                    </div>
+                    <div className="stat-l">{s.label}</div>
+                  </GlowCard>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </div>

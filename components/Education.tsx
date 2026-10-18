@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap } from "lucide-react";
+import { BookOpen, Calendar, GraduationCap } from "lucide-react";
 import { education } from "@/lib/data";
 import { GlowCard, Reveal, SectionHead } from "./ui";
 
@@ -12,13 +12,13 @@ export default function Education() {
         <SectionHead n="05" kicker="education" title="Where it started." />
         <div className="edu-grid">
           {education.map((e, i) => (
-            <Reveal key={e.degree} delay={i * 0.1}>
+            <Reveal key={e.degree} delay={i * 0.1} className={`edu-item${i === 0 ? " first" : ""}`}>
               <GlowCard className="edu">
                 <div className="edu-top">
-                  <div className="skill-icon">
-                    <GraduationCap size={20} />
-                  </div>
-                  <span className="mono edu-period">{e.period}</span>
+                  <div className="skill-icon">{i === 0 ? <GraduationCap size={20} /> : <BookOpen size={20} />}</div>
+                  <span className="mono edu-period">
+                    <Calendar size={13} /> {e.period}
+                  </span>
                 </div>
                 <h3 className="display">{e.degree}</h3>
                 <div className="edu-school">{e.school}</div>

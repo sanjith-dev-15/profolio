@@ -1,11 +1,18 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown, Mail, MapPin, Sparkles } from "lucide-react";
+import { ArrowDown, Bot, CircleCheck, Mail, MapPin, Server, Smartphone, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { profile } from "@/lib/data";
+import { heroStats, profile } from "@/lib/data";
 import Terminal from "./Terminal";
-import { GithubIcon, LinkedinIcon } from "./ui";
+import { CountUp, GithubIcon, LinkedinIcon } from "./ui";
+
+const orbitChips = [
+  { Icon: Bot, cls: "oc-1", color: "var(--teal)" },
+  { Icon: Smartphone, cls: "oc-2", color: "var(--violet)" },
+  { Icon: Server, cls: "oc-3", color: "var(--amber)" },
+];
 
 const words = ["AI backends.", "Android apps.", "document pipelines.", "release automation."];
 
@@ -24,6 +31,44 @@ export default function Hero() {
 
   return (
     <header id="top" className="hero container">
+      {/* Mobile-only: avatar orbit + stats, shown above the intro */}
+      <motion.div
+        className="hero-m"
+        initial={{ opacity: 0, scale: 0.94 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+      >
+        <div className="orbit" aria-hidden>
+          <span className="orbit-ring r1" />
+          <span className="orbit-ring r2" />
+          <div className="orbit-avatar">
+            <div className="orbit-face">
+              <Image src="/sanjith.png" alt="" width={250} height={250} priority />
+            </div>
+          </div>
+          <div className="orbit-spin">
+            {orbitChips.map(({ Icon, cls, color }) => (
+              <span key={cls} className={`orbit-chip ${cls}`} style={{ background: color, boxShadow: `0 0 24px -4px ${color}, 0 0 0 1px var(--border-strong)` }}
+              >
+                <span className="orbit-chip-in">
+                  <Icon size={18} />
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="hero-stats">
+          {heroStats.map((s) => (
+            <div key={s.label} className="hero-stat">
+              <div className="hero-stat-n display grad">
+                <CountUp to={s.n} suffix={s.suffix} />
+              </div>
+              <div className="hero-stat-l">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
       <div className="hero-copy">
         <motion.div className="status" {...fadeUp(0.1)}>
           <span className="pulse" /> Product Developer @ Nigo Compliance
@@ -71,7 +116,16 @@ export default function Hero() {
           structured, filing-ready data. I also ship Android apps with React Native, Expo and native Kotlin modules.
         </motion.p>
 
-        <motion.div className="actions" {...fadeUp(1.1)}>
+        <motion.div className="hero-actions-m" {...fadeUp(1.1)}>
+          <a className="btn btn-grad" href="#projects">
+            <CircleCheck size={18} /> View Projects
+          </a>
+          <a className="btn" href="#contact">
+            <Mail size={18} /> Contact Me
+          </a>
+        </motion.div>
+
+        <motion.div className="actions hero-actions" {...fadeUp(1.1)}>
           <a className="btn btn-primary" href={`mailto:${profile.email}`}>
             <Mail size={18} /> Get in touch
           </a>
